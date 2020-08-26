@@ -1,0 +1,20 @@
+---
+- name: create apache vhost
+  hosts: lamp
+  pre_tasks:
+  - name: pre_tasks message
+    debug:
+      msg: setting up web server 
+
+  roles:
+  - mywebhost
+
+  post_tasks:
+  - name: install contents from local file
+    copy:
+      src: files/html/
+      dest: "/var/www/vhosts/{{ ansible_hostname }}" 
+  - name: post_tasks message
+    debug:
+      msg: web server is configured
+

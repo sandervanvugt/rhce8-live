@@ -1,0 +1,8 @@
+---
+- name: checkin second disk
+  hosts: all
+  tasks:
+    - name:  get disks
+      debug:
+        msg: "Second disk found name {{ (ansible_devices|list| reject('search','\\d$')| list| sort)[1] }}"
+      when: "(ansible_devices|list| reject('search','\\d$')| list| length) > 1"

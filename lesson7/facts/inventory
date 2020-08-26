@@ -1,0 +1,14 @@
+ansible1.example.com
+ansible2.example.com
+
+[lamp]
+ansible1.example.com
+
+[file]
+ansible2.example.com
+
+[nodes:children]
+lamp
+file
+
+

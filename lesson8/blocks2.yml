@@ -1,0 +1,17 @@
+- name: using blocks
+  hosts: all
+  tasks:
+    - name: intended to be successful
+      block:
+        - name: remove a file
+          shell:
+            cmd: /usr/bin/rm /var/www/html/index.html
+      rescue:
+        - name: create a file
+          shell:
+            cmd: /usr/bin/touch /tmp/rescuefile
+      always:
+        - name: always write a message to logs
+          shell:
+            cmd: /usr/bin/logger hello
+

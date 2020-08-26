@@ -1,0 +1,8 @@
+# from Ansible Galaxy
+- src: geerlingguy.docker
+
+- src: geerlingguy.nginx
+  version: 1.13
+  name: nginx-1.13
+
+

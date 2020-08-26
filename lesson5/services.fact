@@ -1,0 +1,6 @@
+[services]
+smb_service = smbd
+ftp_service = vsftpd
+db_service = mariadb
+web_service = httpd
+firewall_service = firewalld

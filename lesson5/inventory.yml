@@ -1,0 +1,14 @@
+---
+mygroupname:
+  hosts:
+    myhost1:
+      ansible_host: 10.20.30.1
+    myhost2:
+      ansible_host: 10.20.30.2
+      
+othergroupname:
+  hosts:
+    otherhost1:
+      ansible_host: 10.20.30.3
+    otherhost2:
+      ansible_host: 10.20.30.4

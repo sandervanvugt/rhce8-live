@@ -1,0 +1,6 @@
+---
+- name: setup lamp
+  hosts: lamp
+  roles:
+    - lamp
+    

@@ -1,0 +1,12 @@
+[lamp_test]
+ansible1.example.com
+
+[lamp_prod]
+ansible1.example.com
+ansible2.example.com
+
+[nodes:children]
+lamp_test
+lamp_prod
+
+

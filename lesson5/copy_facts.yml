@@ -1,0 +1,28 @@
+---
+- name: copy custom facts
+  hosts: all
+  vars:
+    remote_dir: /etc/ansible/facts.d/
+    fact_file:
+      - packages.fact
+      - services.fact
+  tasks:
+    - name: create directory for local facts
+      file:
+        state: directory
+        path: "{{ remote_dir }}"
+
+    - name: copy facts
+      copy:
+        src: "{{ item }}"
+        dest: "{{ remote_dir }}"
+      loop: "{{ fact_file }}"
+
+    - name: re-gather facts
+      setup:
+
+    - name: Test facts
+      debug:
+        msg: 
+          - "db_package = {{ ansible_local['packages']['packages']['db_package'] }}"
+          - "firewall_service = {{ ansible_local['services']['services']['firewall_service'] }}"
