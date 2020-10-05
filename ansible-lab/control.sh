@@ -14,6 +14,7 @@ cat <<EOF >> /etc/hosts
 192.168.4.200 control.example.com
 192.168.4.201 ansible1.example.com
 192.168.4.202 ansible2.example.com
+192.168.4.203 ansible3.example.com
 EOF
 
 su - ansible -c "ssh-keygen -b 2048 -t rsa -f /home/ansible/.ssh/id_rsa -q -P \"\""
