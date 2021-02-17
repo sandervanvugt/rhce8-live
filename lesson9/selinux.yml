@@ -4,7 +4,7 @@
   tasks:
   - name: install required pacakges
     yum:
-      name: policycoreutils-python
+      name: policycoreutils-python-utils
       state: present
   - name: set selinux context
     sefcontext:
