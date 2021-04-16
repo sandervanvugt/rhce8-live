@@ -1,9 +1,0 @@
----
-- name: setup time
-  hosts: all
-  roles:
-    - rhel-system-roles.timesync
-  tasks:
-    - name: set timezone
-      timezone:
-        name: "{{ timezone }}"
