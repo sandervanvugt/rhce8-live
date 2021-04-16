@@ -1,6 +1,0 @@
----
-# handlers file for ssh-setup
-- name: restart sshd
-  service:
-    name: sshd
-    state: restarted
