@@ -1,0 +1,11 @@
+---
+- name: loop over dict
+  hosts: localhost
+  vars_files:
+  - vars/users-dictionary
+  tasks:
+  - name: print stuff
+    debug:
+      msg: "User {{ item.key }} is {{ item.value.username }} and has {{ item.value.shell }}"
+    with_dict: "{{ users }}"
+

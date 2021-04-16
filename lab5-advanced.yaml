@@ -1,0 +1,13 @@
+## Write a playbook that installs vsftpd only on the servers that have the
+## custom fact set to type -> production
+- name: Install vsftpd on servers that has custom fact set to "type=production"
+  hosts: all
+  tasks: 
+    - name: Set fact
+      set_fact:
+        is_production: ansible_local['{{ inventory_hostname_short }}']['{{ inventory_hostname_short }}']['type'] == "production"
+    - name: Install vsftpd if type is production on local_fact.
+      package:
+        name: vsftpd
+        state: present
+      when: is_production
