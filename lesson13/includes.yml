@@ -1,9 +1,0 @@
----
-- name: setup apache
-  hosts: all
-  tasks:
-    - name: setup apache task
-      import_tasks: install-and-setup.yml
-      vars:
-        package: httpd
-        service: httpd
