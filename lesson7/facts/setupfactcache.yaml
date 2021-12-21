@@ -1,0 +1,24 @@
+---
+- name: setup local redis fact cache
+  hosts: localhost
+  become: yes
+  tasks:
+  - name: install redis
+    package: 
+      name: redis
+      state: latest
+  - name: start and enable
+    service:
+      name: redis
+      state: started
+      enabled: yes
+  - name: enable python module
+    pip:
+      name: redis
+  - debug:
+      msg: |
+        IMPORTANT - change all ansible.cfg files to include the following
+        fact_caching = redis
+        fact_caching_timeout = 3600
+        fact_caching_connnection = localhost[colon]6379[colon]0
+        gather_facts[colon]no
