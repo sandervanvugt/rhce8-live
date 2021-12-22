@@ -1,0 +1,15 @@
+- name: ansible1 facts
+  hosts: ansible1.example.com
+  vars:
+    remote_dir: /etc/ansible/facts.d
+    facts_file: ansible1.fact
+  tasks:
+  - name: create fact dir
+    file:
+      state: directory
+      recurse: yes
+      path: "{{ remote_dir }}"
+  - name: install new facts
+    copy:
+      src: "{{ facts_file }}"
+      dest: "{{ remote_dir }}"
