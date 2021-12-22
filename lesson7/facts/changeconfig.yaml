@@ -1,0 +1,23 @@
+---
+- name: find config
+  hosts: localhost
+  become: true
+  tasks:
+  - name: find ansible.cfg files
+    find:
+      paths: /home/ansible/rhce8-live
+      patterns: 'ansible.cfg' 
+      recurse: yes
+    register: output
+  - debug:
+      var: item.path
+    with_items: "{{ output.files }}"
+  - blockinfile:
+      path: "{{ item.path }}"
+      insertafter: "defaults"
+      marker: "##<!-- {mark} ANSIBLE MANAGED BLOCK -->##"
+      block: |
+        fact_caching = redis
+        fact_caching_timeout = 3600
+        fact_caching_connection = localhost:6379:0
+    with_items: "{{ output.files }}"
