@@ -1,0 +1,13 @@
+---
+- name: make command idempotent
+  hosts: ansible2.example.com
+  gather_facts: no
+  tasks:
+  - name: find out if anna already exists
+    shell: id anna
+    register: isanna
+  - debug:
+      var: isanna
+  - name: create user anna
+    command: useradd anna
+    when: isanna.rc != 0
