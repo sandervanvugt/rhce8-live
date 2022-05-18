@@ -1,0 +1,15 @@
+---
+- name: set_fact demo
+  hosts: localhost
+  tasks:
+  - set_fact:
+      myvar: myvalue
+  - debug:
+      msg: the value is {{ myvar }}
+
+- name: other play
+  hosts: localhost
+  tasks:
+  - debug:
+      msg: checking if set_fact is valid {{ myvar }}
+
