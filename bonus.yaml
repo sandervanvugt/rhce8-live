@@ -1,0 +1,10 @@
+---
+  - name: bonus lab
+    hosts: all
+    tasks:
+      - name: set hostname
+        hostname:
+          name: "{{ inventory_hostname }}"
+      - name: reboot servers
+        reboot:
+          test_command: whoami
