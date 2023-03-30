@@ -1,0 +1,14 @@
+---
+- name: demo how register works
+  hosts: all
+  vars:
+    username: anna
+  tasks:
+  - name: show register on random module
+    user:
+      name: "{{ username }}"
+    register: user
+  - name: show register results
+    debug:
+      var: user
+

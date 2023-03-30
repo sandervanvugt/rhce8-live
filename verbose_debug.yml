@@ -1,0 +1,10 @@
+---
+- name: test debug verbosity
+  hosts: localhost
+  become: false
+  vars:
+    showthis: this only shows when using -vv
+  tasks:
+  - name: 
+    var: showthis
+    verbosity: 2
