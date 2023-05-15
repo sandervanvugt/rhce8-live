@@ -1,0 +1,10 @@
+---
+- name: using multiple conditions
+  hosts: all
+  tasks:
+  - package:
+      name: httpd
+      state: installed
+    when: 
+      - ansible_distribution == "CentOS"
+      - ansible_memfree_mb < 512 

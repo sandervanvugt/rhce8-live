@@ -1,12 +1,2 @@
-[lamptest]
-ansible1.example.com
-
-[lampprod]
-ansible1.example.com
-ansible2.example.com
-
-[nodes:children]
-lamptest
-lampprod
-
-
+ansible1
+ansible2

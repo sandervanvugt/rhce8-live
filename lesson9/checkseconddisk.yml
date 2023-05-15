@@ -1,0 +1,15 @@
+---
+- hosts: ansible1.example.com, ansible2.example.com
+  tasks:
+ 
+# Assuming sdX disk naming convention.
+ 
+# If we'd rather skip the task than fail when there's no second SCSI disk:
+    - debug:
+        msg: "You have a second disk"
+      when: ansible_facts['devices']['sdb'] is defined
+ 
+    - debug:
+        msg: "You have no second disk"
+      when: ansible_facts['devices']['sdb'] is not defined
+

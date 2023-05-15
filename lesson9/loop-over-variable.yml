@@ -1,0 +1,9 @@
+- name: show loop over variable
+  hosts: all
+  vars_files:
+  - loopvars.yml
+  tasks:
+  - name: show the working
+    debug:
+      msg: this is {{ item }}
+    loop: "{{ randomstuff }}"

@@ -1,0 +1,33 @@
+---
+- name: Play second disk checker
+  hosts: all
+  gather_facts: no
+  become: no
+  tasks:
+    # Note: uses the length filter
+    #
+    # lsblk has a TYPE column that distinguishes between disks, partitions,
+    # and optical media and does not make assumptions about the disk
+    # driver (i.e. also works with NVME drives)
+    #
+    # command and shell modules in combination with register are useful for
+    # gathering info not in facts and idempotent so long the they run
+    # commands that don't make changes.  However, they mistakenly assume
+    # a change was made if successful so you need "changed_when: false"
+    # to correct the playbook summary lines.
+    - name: Gather disk info
+      shell: lsblk -o NAME,TYPE | awk '/disk/ { print $1; }'
+      changed_when: false
+      register: lsblk
+    - name: printf-style debugging
+      ansible.builtin.debug:
+        var: lsblk
+    - name: Ensure debug message is printed
+      ansible.builtin.debug:
+        msg: "You have a second disk"
+      when: lsblk.stdout_lines | length > 1
+    - name: Ensure debug message is printed
+      ansible.builtin.debug:
+        msg: "You DO NOT have a second disk"
+      when: lsblk.stdout_lines | length < 2
+
